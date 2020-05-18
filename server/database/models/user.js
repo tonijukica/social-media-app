@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'user',
     timestamps: true,
     underscored: true
+  });
+  User.associate = (db) => {
+    User.hasMany(db.Comment);
+    User.hasMany(db.Post);
   }
-  );
   return User;
 }

@@ -6,7 +6,9 @@ const config = require('./config');
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 const models = {
-  User: sequelize.import('./models/user')
+  User: sequelize.import('./models/user'),
+  Post: sequelize.import('./models/post'),
+  Comment: sequelize.import('./models/comment')
 };
 
 const db = {
