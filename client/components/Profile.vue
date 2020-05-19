@@ -30,7 +30,7 @@ export default {
       user: 'getUser'
     }),
     getProfile() {
-      api.profile(this.user.token).then((data) => {
+      api.profile().then((data) => {
         this.id = data.id;
         this.username = data.username;
         this.email = data.email;
