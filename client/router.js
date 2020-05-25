@@ -6,6 +6,7 @@ import Login from '@/components/auth/Login'
 import Register from '@/components/auth/Register'
 import Profile from '@/components/Profile'
 import Layout from '@/components/layout/Layout'
+import Feed from '@/components/Feed'
 
 Vue.use(Router);
 
@@ -24,6 +25,10 @@ const router = new Router({
       name: 'profile',
       component: Profile,
       meta: { protected: true }
+    },{
+      path: 'feed',
+      name: 'feed',
+      component: Feed
     }
   ]
   }, {

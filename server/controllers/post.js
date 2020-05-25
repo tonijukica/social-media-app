@@ -1,12 +1,12 @@
 'use strict';
 const express = require('express');
-const { Post, Comment } = require('../database');
+const { Post, Comment, User } = require('../database');
 const router = express.Router();
 const auth = require('../common/auth');
 
 router.get('/posts', async(req, res) => {
   const posts = await Post.findAll({
-    include: Comment
+    include: [Comment, User]
   });
   return res.json(posts);
 });
