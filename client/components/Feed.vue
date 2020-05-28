@@ -2,10 +2,10 @@
   <div>
     <div class="posts">
       <post-box
-      v-for="post in posts"
-      :key="post.id"
-      :text="post.postText"
-      :title="post.title"
+        v-for="post in posts"
+        :key="post.id"
+        :text="post.postText"
+        :title="post.title"
       />
     </div>
   </div>
@@ -13,26 +13,23 @@
 
 <script>
 import PostBox from '@/components/post/PostBox';
-import api from '@/api/post';
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'feed',
-  data: () => ({
-    posts: []
-  }),
   components: {
     'post-box': PostBox
   },
-  methods: {
-    getPosts() {
-      api.posts().then(data => {
-        console.log(data)
-        this.posts = data;
-      });
-    }
+  computed: {
+    ...mapGetters({
+      posts: 'getPosts'
+    }),
   },
-  mounted() {
-    this.getPosts()
-  }
+  methods: {
+    ...mapActions(['fetchPosts'])
+  },
+  async created() {
+    await this.fetchPosts();
+  },
 }
 </script>
 
