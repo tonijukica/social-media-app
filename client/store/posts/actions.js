@@ -7,6 +7,20 @@ const fetchPosts = ({ commit }) => {
     })
 }
 
+const newPost = ({ commit }, { title, postText }) => {
+  return api.makePost({
+    title,
+    text: postText
+  })
+    .then(() => {
+      commit('addPost', {
+        title,
+        postText
+      })
+    });
+}
+
 export default {
-  fetchPosts
+  fetchPosts,
+  newPost
 }
