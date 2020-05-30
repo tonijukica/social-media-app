@@ -5,6 +5,9 @@ const fetchPosts = ({ commit }) => {
     .then(data => {
       commit('setPosts', data);
     })
+    .catch((err) => {
+      commit('setError', err.message)
+    });
 }
 
 const newPost = ({ commit }, { title, postText }) => {
@@ -17,10 +20,18 @@ const newPost = ({ commit }, { title, postText }) => {
         title,
         postText
       })
+    })
+    .catch((err) => {
+      commit('setError', err.message)
     });
+}
+
+const toggle = ({commit}) => {
+  commit('toggleDialog');
 }
 
 export default {
   fetchPosts,
-  newPost
+  newPost,
+  toggle,
 }

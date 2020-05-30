@@ -1,10 +1,9 @@
 <template>
   <v-row justify="center">
     <v-dialog
-      :value="open"
+      :value="dialog"
         persistent
         max-width="600px"
-        :activator="open"
       >
       <v-card>
         <v-card-title>
@@ -17,31 +16,51 @@
                 <v-text-field outlined label="Title" v-model="title"></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-textarea outlined height="150px" :v-model="postText" />
+                <v-textarea outlined height="150px" v-model="postText" />
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="close">Close</v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="submitPost"
+            :disabled="(!!!postText || !!!title)"
+          >
+            Post
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
   </v-row>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
-  props: {
-    open: Boolean
-  },
   data: () => ({
     title: '',
     postText: ''
   }),
+  computed: {
+    ...mapGetters(['dialog'])
+  },
   methods: {
-
+    ...mapActions(['toggle', 'newPost']),
+    close() {
+      this.title = '';
+      this.postText = '';
+      this.toggle();
+    },
+    submitPost() {
+      this.newPost({
+        title: this.title,
+        postText: this.postText
+      });
+      this.toggle();
+    }
   }
 }
 </script>

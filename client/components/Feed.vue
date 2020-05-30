@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="posts">
-      <v-btn class="mx-auto" @click="toggleDialog">
+      <v-btn class="mx-auto" @click="toggle">
         New post
       </v-btn>
-      <add-dialog :open="dialog"/>
+      <add-dialog/>
       <post-box
         v-for="post in posts"
         :key="post.id"
@@ -34,9 +34,8 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(['fetchPosts']),
+    ...mapActions(['fetchPosts', 'toggle']),
     toggleDialog() {
-      console.log('aa');
       this.dialog = !this.dialog;
     }
   },
