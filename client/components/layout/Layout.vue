@@ -1,7 +1,7 @@
 <template>
  <div>
   <appbar/>
-  <router-view/>
+  <router-view class="pad"/>
   <custom-footer/>
  </div>
 </template>
@@ -18,5 +18,7 @@ export default {
 </script>
 
 <style>
-
+.pad{
+  padding-bottom: 60px;
+}
 </style>

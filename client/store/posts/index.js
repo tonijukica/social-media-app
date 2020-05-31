@@ -3,7 +3,9 @@ import getters from './getters';
 import mutations from './mutations';
 
 const state = {
-  posts: null
+  posts: null,
+  dialog: false,
+  errMsg: ''
 };
 
 export default {

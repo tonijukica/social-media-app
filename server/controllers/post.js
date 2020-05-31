@@ -6,7 +6,15 @@ const auth = require('../common/auth');
 
 router.get('/posts', async(req, res) => {
   const posts = await Post.findAll({
-    include: [Comment, User]
+    include: [
+      Comment,
+      {
+        model: User,
+        attributes: [
+          'username'
+        ]
+      }
+    ]
   });
   return res.json(posts);
 });
@@ -43,7 +51,20 @@ router.post('/post', auth,  async(req, res) => {
 router.get('/user/:id/posts', async(req, res) => {
   const { id: userId } = req.params;
 
-  const posts = await Post.findAll({userId});
+  const posts = await Post.findAll({
+    where: {
+      userId
+    },
+    include: [
+      Comment,
+      {
+        model: User,
+        attributes: [
+          'username'
+        ]
+      }
+    ]
+  });
   return res.json(posts);
 });
 

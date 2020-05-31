@@ -1,15 +1,20 @@
 <template>
   <v-card
-  class="mx-auto post"
-    width="300"
-    height="100"
+    class="mx-auto post"
+    width="500"
+    height="auto"
   >
     <v-card-title>
-      {{title}}
+      {{post.title}}
     </v-card-title>
     <v-card-text>
-      {{text}}
+      {{post.postText}}
     </v-card-text>
+    <v-card-subtitle t>
+      <strong>
+        {{post.user.username}}
+      </strong>
+    </v-card-subtitle>
   </v-card>
 </template>
 
@@ -17,10 +22,7 @@
 export default {
   name: 'post-box',
   props: {
-    id: Number,
-    title: String,
-    text: String,
-    comments: Array
+   post: Object
   }
 }
 </script>
