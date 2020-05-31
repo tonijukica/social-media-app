@@ -26,19 +26,13 @@ export default {
     'post-box': PostBox,
     'add-dialog': AddPostDialog
   },
-  data: () => ({
-    dialog: true
-  }),
   computed: {
     ...mapGetters({
       posts: 'getPosts'
     }),
   },
   methods: {
-    ...mapActions(['fetchPosts', 'toggle']),
-    toggleDialog() {
-      this.dialog = !this.dialog;
-    }
+    ...mapActions(['fetchPosts', 'toggle'])
   },
   async created() {
     await this.fetchPosts();

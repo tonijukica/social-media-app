@@ -34,6 +34,7 @@ module.exports = {
   },
   devServer,
   chainWebpack(config) {
+    devServer.over
     config.resolve.alias.merge(aliases);
     config.resolve.extensions.merge(extensions);
   },

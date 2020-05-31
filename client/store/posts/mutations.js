@@ -1,4 +1,4 @@
-const setPosts = (state, posts ) => {
+const setPosts = (state, posts) => {
   state.posts = posts;
 };
 

@@ -3,10 +3,11 @@ import Vue from "vue";
 import store from '@/store';
 import Home from '@/components/Home';
 import Login from '@/components/auth/Login'
-import Register from '@/components/auth/Register'
-import Profile from '@/components/Profile'
-import Layout from '@/components/layout/Layout'
-import Feed from '@/components/Feed'
+import Register from '@/components/auth/Register';
+import Profile from '@/components/Profile';
+import Layout from '@/components/layout/Layout';
+import Feed from '@/components/Feed';
+import UserFeed from '@/components/UserFeed';
 
 Vue.use(Router);
 
@@ -29,6 +30,10 @@ const router = new Router({
       path: 'feed',
       name: 'feed',
       component: Feed
+    },{
+      path: 'user/:id/feed',
+      name: 'userfeed',
+      component: UserFeed
     }
   ]
   }, {

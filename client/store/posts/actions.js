@@ -10,6 +10,16 @@ const fetchPosts = ({ commit }) => {
     });
 }
 
+const fetchUserPosts = ({ commit }, userId) => {
+  return api.getUserPosts(userId)
+    .then(data => {
+      commit('setPosts', data);
+    })
+    .catch((err) => {
+      commit('setError', err.message)
+    });
+}
+
 const newPost = ({ commit }, { title, postText }) => {
   return api.makePost({
     title,
@@ -32,6 +42,7 @@ const toggle = ({commit}) => {
 
 export default {
   fetchPosts,
+  fetchUserPosts,
   newPost,
   toggle,
 }
