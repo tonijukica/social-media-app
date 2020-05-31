@@ -1,18 +1,19 @@
 <template>
-  <div>
-    <div class="posts">
-      <v-btn class="mx-auto" @click="toggle">
-        New post
-      </v-btn>
+  <v-row align="center">
+    <v-col class="posts">
+      <div class='text-center'>
+        <v-btn class="mx-auto text-center" @click="toggle">
+          New post
+        </v-btn>
+      </div>
       <add-dialog/>
       <post-box
         v-for="post in posts"
         :key="post.id"
-        :text="post.postText"
-        :title="post.title"
+        :post="post"
       />
-    </div>
-  </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

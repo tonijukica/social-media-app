@@ -6,7 +6,15 @@ const auth = require('../common/auth');
 
 router.get('/posts', async(req, res) => {
   const posts = await Post.findAll({
-    include: [Comment, User]
+    include: [
+      Comment,
+      {
+        model: User,
+        attributes: [
+          'username'
+        ]
+      }
+    ]
   });
   return res.json(posts);
 });
