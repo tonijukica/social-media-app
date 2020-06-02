@@ -10,11 +10,19 @@
     <v-card-text>
       {{post.postText}}
     </v-card-text>
-    <v-card-subtitle t>
-      <strong>
+    <v-card-actions>
+      <strong
+        class="ml-2"
+        @click="redirectToUserFeed"
+      >
         {{post.user.username}}
       </strong>
-    </v-card-subtitle>
+      <v-row
+        justify="end"
+      >
+        <v-icon class="mr-8">mdi-heart</v-icon>
+      </v-row>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -23,6 +31,12 @@ export default {
   name: 'post-box',
   props: {
    post: Object
+  },
+  methods: {
+    redirectToUserFeed() {
+      const userId = this.post.userId;
+      this.$router.push({ path: `/user/${userId}/feed`});
+    }
   }
 }
 </script>
